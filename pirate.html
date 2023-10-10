@@ -1,114 +1,252 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>The Pirates</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" 
-    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" 
-    integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" 
-    integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
- <style>
-    #locations{
-        color:purple;
-        font-family: Arial, Helvetica, sans-serif;
-        font-style: italic;
-    }
-    #penalty{
-        color: red;
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
-    #help{
-        color: blue;
-        font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-    }
-    body {
-    font-family: Arial, sans-serif;
-    background-color: white;
-    margin: 0;
-    padding: 0;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 30px;
+        }
 
-.GameField {
-    width: 80%;
-    margin: 0 auto;
-    padding: 20px;
-    box-sizing: border-box;
-}
+        header {
+            background-color: #2c3e50;
+            color: white;
+            padding:30px;
+            text-align: center;
+        }
 
-.row {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 20px;
-}
+        main {
+            padding: 30px;
+        }
 
-.search_location {
-    width: 19%;
-    padding: 5px;
-    border: 2px solid #b22828;
-    background-color: #1a2a95;
-    text-align: center;
-    box-sizing: border-box;
-}
+        p {
+            margin-bottom: 20px;
+        }
 
-.search_location img {
-    max-width: 100%;
-    max-height: 100%;
-    display: block;
-    margin: auto auto;
-}
+        .location {
+            width: 100px; 
+            height: 100px; 
+            border: 1px solid white;
+            margin: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
 
- </style>
+        .location img {
+            max-width: 100%;
+            max-height: 100%;
+
+        }
+    </style>
+    <title>The pirates</title>
+   
 </head>
+
+
 <body>
-<header><h1>Find the treasure by Sumedh</h1></header>
+    <header class="bg-primary text-white text-center p-4">
+        <h1>Find the treasure by Sumedh</h1>
+    </header>
+  <main class="container mt-4">
+        <div class="alert alert-info">
+            Click on the locations to search for treasure, beware the traps.
+        </div>
+        <div class="alert alert-primary" id="locations">
+            Number of locations checked is zero.
+        </div>
+        <div class="alert alert-warning" id="penalty">
+            Penalty is zero.
+        </div>
+        <div class="alert alert-danger" onclick="updateHelpAndPenalty()">
+            Click for help.
+        </div>
+        <div class="alert alert-secondary" id="help">
+            Help report
+        </div>
 
-<p>Click on the locations to search for treasure, beware the traps</p>
-<div id="locations">Number of locations checked is zero.</div>
-<p id="penalty">Penalty is zero.</p>
-<p>Click for help.</p>
-<div id="help">Help report</div>
+        <!-- Game field with images -->
+        <div class="row">
+            <div class="location">
+                <img src="nature.jpg" alt="Starting Location" id="location0" onclick="check(0)">
+            </div>
+            <div class="location">
+                <img src="nature.jpg" alt="Starting Location" id="location1" onclick="check(1)" >
+            </div>
+            <div class="location">
+                 <img src="nature.jpg" alt="Starting Location" id="location2" onclick="check(2)">
+            </div>
+            <div class="location">
+               <img src="nature.jpg" alt="Starting Location" id="location3" onclick="check(3)">
+            </div>
+            <div class="location">
+                 <img src="nature.jpg" alt="Starting Location" id="location4" onclick="check(4)">
+            </div>
+           
+        </div>
 
-<div class="GameField">
-    <div class="row">
-        <div class="search_location col-sm-2"><img src="nature.jpg" alt="map" style="width: 120px;height: 70px;"></div>
-        <div class="search_location col-sm-2"><img src="nature.jpg" alt="treasure" style="width: 120px;height: 70px;"></div>
-        <div class="search_location col-sm-2"><img src="nature.jpg" alt="traps" style="width: 120px;height: 70px;"></div>
-        <div class="search_location col-sm-2"><img src="nature.jpg" alt="firstitem" style="width: 120px;height: 70px;"></div>
-        <div class="search_location col-sm-2"><img src="nature.jpg" alt="seconditem" style="width: 120px;height: 70px;"></div>
-    </div>
-    <div class="row">
-        <div class="search_location col-sm-2"><img src="nature.jpg" alt="map" style="width: 120px;height: 70px;"></div>
-        <div class="search_location col-sm-2"><img src="nature.jpg" alt="treasure" style="width: 120px;height: 70px;"></div>
-        <div class="search_location col-sm-2"><img src="nature.jpg" alt="traps" style="width: 120px;height: 70px;"></div>
-        <div class="search_location col-sm-2"><img src="nature.jpg" alt="firstitem" style="width: 120px;height: 70px;"></div>
-        <div class="search_location col-sm-2"><img src="nature.jpg" alt="seconditem" style="width: 120px;height: 70px;"></div>
-    </div>
-    <div class="row">
-        <div class="search_location col-sm-2"><img src="nature.jpg" alt="map" style="width: 120px;height: 70px;"></div>
-        <div class="search_location col-sm-2"><img src="nature.jpg" alt="treasure" style="width: 120px;height: 70px;"></div>
-        <div class="search_location col-sm-2"><img src="nature.jpg" alt="traps" style="width: 120px;height: 70px;"></div>
-        <div class="search_location col-sm-2"><img src="nature.jpg" alt="firstitem" style="width: 120px;height: 70px;"></div>
-        <div class="search_location col-sm-2"><img src="nature.jpg" alt="seconditem" style="width: 120px;height: 70px;"></div>
-    </div>
-    <div class="row">
-        <div class="search_location col-sm-2"><img src="nature.jpg" alt="map" style="width: 120px;height: 70px;"></div>
-        <div class="search_location col-sm-2"><img src="nature.jpg" alt="treasure" style="width: 120px;height: 70px;"></div>
-        <div class="search_location col-sm-2"><img src="nature.jpg" alt="traps" style="width: 120px;height: 70px;"></div>
-        <div class="search_location col-sm-2"><img src="nature.jpg" alt="firstitem" style="width: 120px;height: 70px;"></div>
-        <div class="search_location col-sm-2"><img src="nature.jpg" alt="seconditem" style="width: 120px;height: 70px;"></div>
-    </div>
-    <div class="row">
-        <div class="search_location col-sm-2"><img src="nature.jpg" alt="map" style="width: 120px;height: 70px;"></div>
-        <div class="search_location col-sm-2"><img src="nature.jpg" alt="treasure" style="width: 120px;height: 70px;"></div>
-        <div class="search_location col-sm-2"><img src="nature.jpg" alt="traps" style="width: 120px;height: 70px;"></div>
-        <div class="search_location col-sm-2"><img src="nature.jpg" alt="firstitem" style="width: 120px;height: 70px;"></div>
-        <div class="search_location col-sm-2"><img src="nature.jpg" alt="seconditem" style="width: 120px;height: 70px;"></div>
-    </div>
-</div>
+        <div class="row">
+            <div class="location">
+                <img src="nature.jpg" alt="Starting Location" id="location5" onclick="check(5)">
+            </div>
+            <div class="location">
+                <img src="nature.jpg" alt="Starting Location" id="location6" onclick="check(6)">
+            </div>
+            <div class="location">
+                 <img src="nature.jpg" alt="Starting Location" id="location7" onclick="check(7)">
+            </div>
+            <div class="location">
+               <img src="nature.jpg" alt="Starting Location" id="location8" onclick="check(8)">
+            </div>
+            <div class="location">
+                 <img src="nature.jpg" alt="Starting Location" id="location9" onclick="check(9)">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="location">
+                <img src="nature.jpg" alt="Starting Location" id="location10" onclick="check(10)">
+            </div>
+            <div class="location">
+                <img src="nature.jpg" alt="Starting Location" id="location11" onclick="check(11)">
+            </div>
+            <div class="location">
+                 <img src="nature.jpg" alt="Starting Location" id="location12" onclick="check(12)">
+            </div>
+            <div class="location">
+               <img src="nature.jpg" alt="Starting Location" id="location13" onclick="check(13)">
+            </div>
+            <div class="location">
+                 <img src="nature.jpg" alt="Starting Location" id="location14" onclick="check(14)">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="location">
+                <img src="nature.jpg" alt="Starting Location" id="location15" onclick="check(15)">
+            </div>
+            <div class="location">
+                <img src="nature.jpg" alt="Starting Location" id="location16" onclick="check(16)">
+            </div>
+            <div class="location">
+            <img src="nature.jpg" alt="Starting Location" id="location17" onclick="check(17)">
+            </div>
+            <div class="location">
+               <img src="nature.jpg" alt="Starting Location" id="location18" onclick="check(18)">
+            </div>
+            <div class="location">
+                 <img src="nature.jpg" alt="Starting Location" id="location19" onclick="check(19)">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="location">
+                <img src="nature.jpg" alt="Starting Location" id="location20" onclick="check(20)">
+            </div>
+            <div class="location">
+                <img src="nature.jpg" alt="Starting Location" id="location21" onclick="check(21)">
+            </div>
+            <div class="location">
+                 <img src="nature.jpg" alt="Starting Location" id="location22" onclick="check(22)">
+            </div>
+            <div class="location">
+               <img src="nature.jpg" alt="Starting Location" id="location23" onclick="check(23)">
+            </div>
+            <div class="location">
+                 <img src="nature.jpg" alt="Starting Location" id="location24" onclick="check(24)">
+            </div>
+        </div>
+        
+    </main>
+      
+    <script>
+        // Variables (Part 4)
+        let ids = [];
+        let checkCount = 0;
+        let penalty = 0;
+        let lastCheck = 0;
+        let treasureLocation = 5;
+        let trapLocation = 18;
+        let gameOver = false;
+
+        // Generate image IDs and assign onclick events
+        for (let i = 0; i < 25; i++) {
+            let id = `location${i}`;
+            ids.push(id);
+            document.getElementById(id).onclick = function() {
+                check(i);
+            };
+        }
+
+        // Functions (Part 4)
+        function check(position) {
+            console.log("Clicked position: " + position);
+            if (gameOver) return;
+
+            let id = ids[position];
+            let imageElement = document.getElementById(id);
+
+            if (position === treasureLocation) {
+                imageElement.src = "treasure.jpg";
+                gameOver = true;
+                penalty -= 3;
+            } else if (position === trapLocation) {
+                imageElement.src = "treasure trap.jpg";
+                gameOver = true;
+                penalty += 4;
+            } else {
+                imageElement.src = "pirateflag.png";
+                penalty += 1;
+            }
+
+            checkCount += 1;
+            document.getElementById("locations").innerText = `Number of locations checked is ${checkCount}.`;
+            document.getElementById("penalty").innerText = `Penalty is ${penalty}.`;
+            lastCheck = position;
+        }
+
+        function help() {
+            if (gameOver) return;
+
+            const rowLast = Math.floor(lastCheck / 5);
+            const colLast = lastCheck % 5;
+            const rowTreasure = Math.floor(treasureLocation / 5);
+            const colTreasure = treasureLocation % 5;
+
+            const distance = Math.abs(rowLast - rowTreasure) + Math.abs(colLast - colTreasure);
+
+            if (distance === 1) {
+                // If one square away, mark in red
+                document.getElementById(`location${treasureLocation}`).style.borderColor = "blue";
+                return "Can Smell It";
+            } else if (distance === 2) {
+                // If two squares away, mark in orange
+                document.getElementById(`location${treasureLocation}`).style.borderColor = "red";
+                return "Close Matie";
+            } else {
+                // Any other distance, keep the border color as default
+                document.getElementById(`location${treasureLocation}`).style.borderColor = "white";
+                return "Step Faster";
+            }
+        }
+
+        // Moved the function outside window.onload
+        function updateHelpAndPenalty() {
+            if (gameOver) return;
+            const helpMessage = help();
+            document.getElementById("help").innerText = helpMessage;
+            penalty += 2;
+            document.getElementById("penalty").innerText = `Penalty is ${penalty}.`;
+        }
+
+        // Add event listener for the "Click for help" button
+        const helpButton = document.getElementById("helpButton");
+        if (helpButton) {
+            helpButton.addEventListener("click", updateHelpAndPenalty);
+        }
+
+        </script>
 </body>
 </html>
-
