@@ -11,7 +11,7 @@
         }
 
         header {
-            background-color: #2c3e50;
+            background-color: blueviolet;
             color: white;
             padding:30px;
             text-align: center;
@@ -47,23 +47,23 @@
 
 
 <body>
-    <header class="bg-primary text-white text-center p-4">
+    <header class="bg-info text-white text-center p-4">
         <h1>Find the treasure by Sumedh</h1>
     </header>
   <main class="container mt-4">
         <div class="alert alert-info">
             Click on the locations to search for treasure, beware the traps.
         </div>
-        <div class="alert alert-primary" id="locations">
+        <div class="alert alert-success" id="locations">
             Number of locations checked is zero.
         </div>
-        <div class="alert alert-warning" id="penalty">
+        <div class="alert alert-danger" id="penalty">
             Penalty is zero.
         </div>
-        <div class="alert alert-danger" onclick="updateHelpAndPenalty()">
+        <div class="alert alert-info" onclick="updateHelpAndPenalty()">
             Click for help.
         </div>
-        <div class="alert alert-secondary" id="help">
+        <div class="alert alert-warning" id="help">
             Help report
         </div>
 
