@@ -160,7 +160,7 @@
         </div>
 
         
-        <button class="btn btn-warning btn-start-timer" onclick="newGame()">New Game</button>
+        <button class="btn btn-info btn-start-timer" onclick="newGame()">New Game</button>
 
         
     </main>
@@ -171,13 +171,13 @@
         let checkCount = 0;
         let penalty = 0;
         let lastCheck = 0;
-        let treasureLocation = 5;
-        let trapLocation = 18;
+        let treasureimage = 5;
+        let trapimage = 18;
         let gameOver = false;
 
         // Generate image IDs and assign onclick events
         for (let i = 0; i < 25; i++) {
-            let id = `location${i}`;
+            let id = `image${i}`;
             ids.push(id);
             document.getElementById(id).onclick = function() {
                 check(i);
@@ -192,11 +192,11 @@
             let id = ids[position];
             let imageElement = document.getElementById(id);
 
-            if (position === treasureLocation) {
+            if (position === treasureimage) {
                 imageElement.src = "treasure.jpg";
                 gameOver = true;
                 penalty -= 3;
-            } else if (position === trapLocation) {
+            } else if (position === trapimage) {
                 imageElement.src = "treasure trap.jpg";
                 gameOver = true;
                 penalty += 4;
@@ -206,7 +206,7 @@
             }
 
             checkCount += 1;
-            document.getElementById("locations").innerText = `Number of locations checked is ${checkCount}.`;
+            document.getElementById("images").innerText = `Number of images checked is ${checkCount}.`;
             document.getElementById("penalty").innerText = `Penalty is ${penalty}.`;
             lastCheck = position;
         }
@@ -216,22 +216,22 @@
 
             const rowLast = Math.floor(lastCheck / 5);
             const colLast = lastCheck % 5;
-            const rowTreasure = Math.floor(treasureLocation / 5);
-            const colTreasure = treasureLocation % 5;
+            const rowTreasure = Math.floor(treasureimage / 5);
+            const colTreasure = treasureimage % 5;
 
             const distance = Math.abs(rowLast - rowTreasure) + Math.abs(colLast - colTreasure);
 
             if (distance === 1) {
                 // If one square away, mark in red
-                document.getElementById(`location${treasureLocation}`).style.borderColor = "blue";
+                document.getElementById(`image${treasureimage}`).style.borderColor = "blue";
                 return "Can Smell It";
             } else if (distance === 2) {
                 // If two squares away, mark in orange
-                document.getElementById(`location${treasureLocation}`).style.borderColor = "red";
+                document.getElementById(`image${treasureimage}`).style.borderColor = "red";
                 return "Close Matie";
             } else {
                 // Any other distance, keep the border color as default
-                document.getElementById(`location${treasureLocation}`).style.borderColor = "white";
+                document.getElementById(`image${treasureimage}`).style.borderColor = "white";
                 return "Step Faster";
             }
         }
@@ -260,24 +260,24 @@
     gameOver = false;
 
     
-    treasureLocation = Math.floor(Math.random() * 25);
-    trapLocation = Math.floor(Math.random() * 25);
+    treasureimage = Math.floor(Math.random() * 25);
+    trapimage = Math.floor(Math.random() * 25);
 
     
-    while (trapLocation === treasureLocation) {
-      trapLocation = Math.floor(Math.random() * 25);
+    while (trapimage === treasureimage) {
+      trapimage = Math.floor(Math.random() * 25);
     }
 
 
     for (let i = 0; i < 25; i++) {
-      const id = `location${i}`;
+      const id = `image${i}`;
       const imageElement = document.getElementById(id);
-      imageElement.src = "location.jpg";
+      imageElement.src = "nature.jpg";
       imageElement.style.borderColor = "white";
     }
 
 
-    document.getElementById("locations").innerText = `Number of locations checked is ${checkCount}.`;
+    document.getElementById("images").innerText = `Number of images checked is ${checkCount}.`;
     document.getElementById("penalty").innerText = `Penalty is ${penalty}.`;
     document.getElementById("help").innerText = "Help report";
   }
