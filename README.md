@@ -2,3 +2,6 @@
 # WebApps-F23-Assignment-7
 An assignment on java script modifying the DOM and using anonymous callback functions.
 Hosted at 
+[treasure hunt page](https://44-563-webapps-f23.github.io/44563-webapps-f23-assignment7-S567645/pirate.html)<br>
+[reaction time check page](https://44-563-webapps-f23.github.io/44563-webapps-f23-assignment7-S567645/react.html)<br>
+[merge page](https://44-563-webapps-f23.github.io/44563-webapps-f23-assignment7-S567645/merge.html)
